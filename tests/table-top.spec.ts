@@ -33,3 +33,22 @@ test("position outside tabletop", () => {
     },[{x : 1, y : 1},{ x : 1, y : 4}]);
     expect(tabletop.contains({ x: 6, y: 2 })).toBe(false);
 });
+
+
+
+test("cannot move to the pot hole position 1 by 1", () => {
+    const tabletop = new Tabletop({
+        rows: 5,
+        columns: 5,
+    },[{x : 1, y : 1},{ x : 1, y : 4}]);
+    expect(tabletop.canMoveToPosition({ x: 1, y: 1 })).toBe(false);
+});
+
+
+test("cannot move to the pot hole position 1 by 4", () => {
+    const tabletop = new Tabletop({
+        rows: 5,
+        columns: 5,
+    },[{x : 1, y : 1},{ x : 1, y : 4}]);
+    expect(tabletop.canMoveToPosition({ x: 1, y: 4 })).toBe(false);
+});

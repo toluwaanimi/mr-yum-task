@@ -54,7 +54,6 @@ export default class Tabletop {
 
 
     public canMoveToPosition(position: IPosition): boolean {
-        console.log(position)
         for (let pothole of this._potholes) {
             if (this.contains(pothole) && pothole.x !== position.x && position.y !== pothole.y) {
                 return true;
