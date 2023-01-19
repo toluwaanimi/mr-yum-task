@@ -7,7 +7,7 @@ import {IDimension, IPosition} from "../interface";
  */
 export default class Tabletop {
     private positionConstraint: PositionConstraint;
-    private _potholes: IPosition[];
+    private readonly _potholes: IPosition[];
 
     /**
      *
