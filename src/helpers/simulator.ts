@@ -18,6 +18,20 @@ export default class Simulator  implements ISimulator{
         this.configure();
     }
 
+    /**
+     *
+     * @param commandData
+     * @description "
+     * This function runs a command.
+     * It takes an argument commandData which is an object containing information about the command to be executed.
+     * The method first uses the commandData.name property to look up a command set in an instance variable _commandLookup,
+     * which is assumed to be a map or object that maps command names to command sets.
+     *
+     * If the command set exists and is enabled, the method calls the execute method of the command object within the set with two arguments,
+     * an object containing information about the command's orientation, and an object containing success and failure callbacks.
+     * The successCallback and failureCallback are called based on the result of the execution.
+     * "
+     */
     public run(commandData: ICommandData) {
         const commandSet = this._commandLookup.get(
             <CommandTypeEnum>commandData.name
@@ -36,6 +50,25 @@ export default class Simulator  implements ISimulator{
         }
     }
 
+    /**
+     *
+     * @private
+     * @description "
+     * This function configures the available commands that can be executed.
+     * It sets up a mapping of command names to command sets in an instance variable _commandLookup.
+     * Each command set contains information about the command's availability, the command object,
+     * and the handlers (successCallback and failureCallback) that will be called based on the result of the execution.
+     *
+     * For example, for the CommandTypeEnum.Place command, it sets the enabled property to true,
+     * the command property to an instance of PlacementCommand class and handlers property to call setEnabledCommandExecution(true) function on success and setEnabledCommandExecution(false) function on failure.
+     *
+     * For the CommandTypeEnum.ReportStatus command, it sets the enabled property to false,
+     * the command property to an instance of StatusCommand class and handlers property to call console.log on success,
+     * which logs the current position and direction of the robot.
+     *
+     * this method is being called during the initialization of the object to set up the initial state of the available commands.
+     * "
+     */
     private configure(): void {
         this._commandLookup.set(CommandTypeEnum.Place, {
             enabled: true,
@@ -80,6 +113,21 @@ export default class Simulator  implements ISimulator{
         });
     }
 
+    /**
+     *
+     * @param enabled : boolean
+     * @private
+     * @description "
+     * This function enables or disables the execution of commands.
+     * It takes a boolean argument enabled which is used to set the enabled property of all command sets in the _commandLookup object, except for the CommandTypeEnum.Place command.
+     *
+     * It uses forEach method of _commandLookup object to iterate over all command sets,
+     * and for each command set it checks if the commandType is not equal to CommandTypeEnum.Place
+     * and if so it updates the enabled property of the command set to the value of the enabled argument.
+     * This allows to enable or disable all the commands, except Place command, at once.
+     * This method is used to prevent the execution of other commands before the Place command has been executed successfully
+     * "
+     */
     private setEnabledCommandExecution(enabled: boolean) {
         this._commandLookup.forEach(
             (commandSet: ICommandSet, commandType: CommandTypeEnum): void => {
