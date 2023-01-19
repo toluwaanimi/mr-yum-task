@@ -38,6 +38,7 @@ export class MovementCommand implements ICommand {
      * "
      */
     private movementIsAllowed(): boolean {
-        return this._robot.tabletop.contains(this._robot.peekNextPosition());
+        console.log(this._robot.peekNextPosition())
+        return this._robot.tabletop.contains(this._robot.peekNextPosition()) && this._robot.tabletop.canMoveToPosition(this._robot.peekNextPosition())
     }
 }

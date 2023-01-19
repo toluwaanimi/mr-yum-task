@@ -5,6 +5,8 @@ import {IPosition} from "../interface";
  * @class PositionConstraint
  */
 export class PositionConstraint {
+
+
     /**
      * @param start
      * @param end
@@ -21,7 +23,8 @@ export class PositionConstraint {
     }
 
 
-    constructor(private _lowerBound: IPosition, private _upperBound: IPosition) {}
+    constructor(private _lowerBound: IPosition, private _upperBound: IPosition) {
+    }
 
     /**
      *
@@ -36,4 +39,7 @@ export class PositionConstraint {
             this._upperBound.y > position.y && this._upperBound.x > position.x;
         return lower && upper;
     }
+
+
+
 }

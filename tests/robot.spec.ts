@@ -13,7 +13,7 @@ import {CompassDirectionEnum} from "../src/enum";
  * "
  */
 test("initial status of robot", () => {
-    const robot = new Robot(new Tabletop({ rows: 5, columns: 5 }));
+    const robot = new Robot(new Tabletop({ rows: 5, columns: 5 },[{x : 1, y : 1},{ x : 1, y : 4}]));
     expect(robot.getCurrentOrientation().position.x).toEqual(0);
     expect(robot.getCurrentOrientation().position.y).toEqual(0);
     expect(robot.getCurrentOrientation().direction).toEqual(
@@ -30,7 +30,7 @@ test("initial status of robot", () => {
  * It is also checking that the x coordinate is not changing when the robot moves forward.
  */
 test("robot movement forward", () => {
-    const robot = new Robot(new Tabletop({ rows: 5, columns: 5 }));
+    const robot = new Robot(new Tabletop({ rows: 5, columns: 5 },[{x : 1, y : 1},{ x : 1, y : 4}]));
     robot.step(1);
     expect(robot.getCurrentOrientation().position.x).toEqual(0);
     expect(robot.getCurrentOrientation().position.y).toEqual(1);
@@ -44,7 +44,7 @@ test("robot movement forward", () => {
  * "
  */
 test("robot movement backward", () => {
-    const robot = new Robot(new Tabletop({ rows: 5, columns: 5 }));
+    const robot = new Robot(new Tabletop({ rows: 5, columns: 5 },[{x : 1, y : 1},{ x : 1, y : 4}]));
     robot.step(2);
     expect(robot.getCurrentOrientation().position.x).toEqual(0);
     expect(robot.getCurrentOrientation().position.y).toEqual(2);
@@ -66,7 +66,7 @@ test("robot movement backward", () => {
  * "
  */
 test("robot left turn movement", () => {
-    const robot = new Robot(new Tabletop({ rows: 5, columns: 5 }));
+    const robot = new Robot(new Tabletop({ rows: 5, columns: 5 },[{x : 1, y : 1},{ x : 1, y : 4}]));
     robot.step(1);
     robot.turnLeft();
     expect(robot.getCurrentOrientation().position.x).toEqual(0);
@@ -104,7 +104,7 @@ test("robot left turn movement", () => {
  * "
  */
 test("robot right turn movement", () => {
-    const robot = new Robot(new Tabletop({ rows: 5, columns: 5 }));
+    const robot = new Robot(new Tabletop({ rows: 5, columns: 5 },[{x : 1, y : 1},{ x : 1, y : 4}]));
     robot.step(1);
     robot.turnRight();
     expect(robot.getCurrentOrientation().position.x).toEqual(0);
@@ -133,7 +133,7 @@ test("robot right turn movement", () => {
  * "
  */
 test("robot reset", () => {
-    const robot = new Robot(new Tabletop({ rows: 5, columns: 5 }));
+    const robot = new Robot(new Tabletop({ rows: 5, columns: 5 },[{x : 1, y : 1},{ x : 1, y : 4}]));
     robot.step(1);
     robot.turnRight();
     expect(robot.getCurrentOrientation().position.x).toEqual(0);
@@ -165,7 +165,7 @@ test("robot reset", () => {
  * "
  */
 test("robot orientation", () => {
-    const robot = new Robot(new Tabletop({ rows: 5, columns: 5 }));
+    const robot = new Robot(new Tabletop({ rows: 5, columns: 5 },[{x : 1, y : 1},{ x : 1, y : 4}]));
     robot.step(2);
     robot.turnRight();
     expect(robot.getCurrentOrientation().position.x).toEqual(0);

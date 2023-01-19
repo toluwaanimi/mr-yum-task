@@ -7,10 +7,12 @@ import {IDimension, IPosition} from "../interface";
  */
 export default class Tabletop {
     private positionConstraint: PositionConstraint;
+    private _potholes: IPosition[];
 
     /**
      *
      * @param dimension
+     * @param position
      * @description "
      * constructor of a class.
      * The constructor takes one argument dimension which is an object that contains information about the size of the area in which the object will move.
@@ -22,7 +24,7 @@ export default class Tabletop {
      * The readonly keyword before the constructor function argument means that this dimension property can't be modified after the object is created.
      * "
      */
-    constructor(readonly dimension: IDimension) {
+    constructor(readonly dimension: IDimension, readonly position : IPosition[]) {
         const startingPoint = { x: 0, y: 0 };
         const endingPoint = {
             x: Math.abs(dimension.columns),
@@ -32,6 +34,7 @@ export default class Tabletop {
             startingPoint,
             endingPoint
         );
+        this._potholes = position;
     }
 
     /**
@@ -48,4 +51,16 @@ export default class Tabletop {
     public contains(position: IPosition): boolean {
         return this.positionConstraint.contains(position);
     }
+
+
+    public canMoveToPosition(position: IPosition): boolean {
+        console.log(position)
+        for (let pothole of this._potholes) {
+            if (this.contains(pothole) && pothole.x !== position.x && position.y !== pothole.y) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
