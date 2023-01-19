@@ -3,7 +3,7 @@
  * @enum{'FORWARD' | 'BACKWARD'}
  * @description "Movement instruction for the motor"
  */
-export enum MotorMovementEnum {
+export enum ToyMovementEnum {
     Forward = "FORWARD",
     Backward = "BACKWARD",
 }

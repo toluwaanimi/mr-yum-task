@@ -17,7 +17,7 @@ export interface IPosition {
 }
 
 /**
- *  @description "Orientation"
+ *  @desc
  */
 export interface IOrientation {
     position: IPosition;
